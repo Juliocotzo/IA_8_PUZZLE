@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>IA</title>
+    <script type="text/javascript" src="vis-network.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">TAREA - 8 PUZZLE - Julio Antonio Cotzojay - 201504381</a>
+    </nav>
+    <div class="container">
+        <h3>Reflex Agent</h3>
+
+        <div class="row">
+            <div id="mynetwork"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // create a network
+        var container = document.getElementById("mynetwork");
+        var DOTstring = puzzle()
+        var parsedData = vis.parseDOTNetwork(DOTstring);
+        var data = {
+            nodes: parsedData.nodes,
+            edges: parsedData.edges
+        }
+        var options = {
+            layout: {
+                hierarchical: {
+                    levelSeparation: 100,
+                    nodeSpacing: 100,
+                    parentCentralization: true,
+                    direction: 'UD',        // UD, DU, LR, RL
+                    sortMethod: 'directed',  // hubsize, directed
+                    shakeTowards: 'roots'  // roots, leaves                        
+                },
+            },
+        };
+        var network = new vis.Network(container, data, options);
+    </script>
+</body>
+
+</html>
